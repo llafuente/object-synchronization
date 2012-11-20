@@ -1,0 +1,39 @@
+{
+  "name": "object-syncronization",
+  "version": "0.0.1",
+  "description": "Object syncronization (async) across network realtime-ish using socket.io",
+  "main": "./index.js",
+  "keywords": [
+    "object",
+    "syncronization",
+    "observer",
+    "subscriber"
+  ],
+  "directories": {
+    "lib": ".",
+    "test": "test"
+  },
+  "scripts" : {
+    "test" : "tap test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/llafuente/object-syncronization.git"
+  },
+  "author": {
+    "name": "Luis Lafuente",
+    "email": "llafuente@noboxout.com",
+    "url": "http://www.noboxout.com"
+  },
+  "license": "MIT",
+  "engine": {
+  },
+  "dependencies" : {
+    "node-class": "*",
+    "socket.io-client": "*",
+    "socket.io": "*",
+  },
+  "devDependencies": {
+    "tap" : "~0.2.5"
+  }
+}
