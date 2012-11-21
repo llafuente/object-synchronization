@@ -4,8 +4,10 @@
 ## Introduction
 ============
 
-Object synchronization across network (using socket.io atm)
+Object synchronization across network using tcp or socket.io
+And If you implement three functions, you could have your own transport easily.
 
+The "sockets" setup is in your side see the examples.
 
 ## Observer
 ============
@@ -37,12 +39,13 @@ Example:
 ## Sync
 ============
 
-* new SyncSocketIO()
-* .add_socket(SocketIO socket, Boolean sync_now)
+* new SyncSocketIO() / SyncTCP
+* .add_socket(Socket socket, Boolean sync_now)
 * .get_object(String id)
 * .observe(String id, Object object, Boolean prevent_emit)
 
-for the example check [/test/test.js](https://github.com/llafuente/object-synchronization/blob/master/test/test.js)
+SocketIO example [/test/test-socket_io.js](https://github.com/llafuente/object-synchronization/blob/master/test/test-socket_io.js)
+TCP example [/test/test-tcp.js](https://github.com/llafuente/object-synchronization/blob/master/test/test-tcp.js)
 
 ## Install
 ==========
