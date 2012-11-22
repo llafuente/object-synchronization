@@ -1,7 +1,7 @@
 {
   "name": "object-syncronization",
   "version": "0.0.1",
-  "description": "Object syncronization (async) across network realtime-ish using socket.io",
+  "description": "Object syncronization (async) across network realtime-ish using socket.io, tcp",
   "main": "./index.js",
   "keywords": [
     "object",
@@ -32,6 +32,7 @@
     "node-class": "*",
     "socket.io-client": "*",
     "socket.io": "*",
+    "buffalo": ">=0.1.3",
   },
   "devDependencies": {
     "tap" : "~0.2.5"

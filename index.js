@@ -5,5 +5,6 @@
     exports.Sync = require("./lib/sync.js").Sync;
     exports.SyncSocketIO = require("./lib/sync_socket_io.js").SyncSocketIO;
     exports.SyncTCP = require("./lib/sync_tcp.js").SyncTCP;
+    exports.SyncTCPBin = require("./lib/sync_tcp_bin.js").SyncTCPBin;
 
 }(module.exports));
