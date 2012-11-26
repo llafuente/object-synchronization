@@ -32,7 +32,7 @@
     "node-class": "*",
     "socket.io-client": "*",
     "socket.io": "*",
-    "buffalo": ">=0.1.3",
+    "buffalo": ">=0.1.3"
   },
   "devDependencies": {
     "tap" : "0.3.2"
