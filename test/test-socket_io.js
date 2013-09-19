@@ -14,10 +14,18 @@
             prop2: null
         }, null),
 
+
         server_objects = new SyncSocketIO(),
         client_objects = new SyncSocketIO(),
-        client_socket;
+        client_socket,
+        debug = function() {}; //console.log;
 
+    server_objects.on("log", function() {
+        console.log("#<", arguments);
+    });
+    client_objects.on("log", function() {
+        console.log("#>", arguments);
+    });
 
 
     // attach SyncSocketIO to the observer
@@ -26,14 +34,14 @@
     obj.prop1 = "first";
     obj.id = "do-not-sync";
 
-    console.log(obj);
+    debug(obj);
 
     server.set("log level", 1);
 
     function close_connections() {
         //var i, o = client.sockets["http://localhost:8080"];
         //for(i in o) {
-           // console.log(i, o[i]);
+           // debug(i, o[i]);
         //}
 
         server.server.close();
@@ -47,7 +55,7 @@
         });
 
         server.server.on('close', function() {
-            console.log("server: good bye");
+            debug("server: good bye");
         });
 
         client_socket = client.connect("http://localhost:8080");
@@ -58,7 +66,7 @@
             });
         });
         client_socket.on('disconnect', function () {
-            console.log("client: good bye");
+            debug("client: good bye");
         });
 
     });
@@ -125,7 +133,7 @@
         }, null);
 
         client_objects.on("netupdate", function() {
-            console.log(client_objects.objects);
+            debug(client_objects.objects);
             var client_obj = client_objects.get_object(2);
             t.notEqual(client_obj, undefined, "client_obj is undefined");
             if(!client_obj) {

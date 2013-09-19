@@ -16,8 +16,15 @@
 
         server_objects = new SyncTCPBin(),
         client_objects = new SyncTCPBin(),
-        client_socket;
+        client_socket,
+        debug = function() {}; //console.log;
 
+    server_objects.on("log", function() {
+        console.log("#<", arguments);
+    });
+    client_objects.on("log", function() {
+        console.log("#>", arguments);
+    });
 
 
     // attach SyncTCPBin to the observer
@@ -32,43 +39,43 @@
     }
 
     function init_client(port, on_ready) {
-        console.log("init_client");
+        debug("init_client");
         client = new require('net').createConnection(port, '127.0.0.1');
 
         client.on('connect', function() { //'connect' listener
-            console.log('client connected');
+            debug('client connected');
             client_objects.add_socket(client, true);
             client_objects.on("ready", function() {
-                console.log("xxxx");
+                debug("xxxx");
                 on_ready();
             });
         });
 
         // Add a 'close' event handler for the client socket
         client.on('close', function() {
-            console.log('Connection closed');
+            debug('Connection closed');
         });
 
         client.on('error', function(e) {
-            console.log('WTF!!', arguments);
+            debug('WTF!!', arguments);
         });
     }
 
     function init_server(port, on_ready) {
-        console.log("init_server");
+        debug("init_server");
         server = require('net').createServer();
         server.listen(port, '127.0.0.1', function() {
-            console.log('server bound');
+            debug('server bound');
         });
         server.on('connection', function(c) { //'connection' listener
-            console.log('server connected');
+            debug('server connected');
             c.on('end', function() {
-                console.log('server disconnected');
+                debug('server disconnected');
             });
             server_objects.add_socket(c);
         })
         server.on('listening', function() {
-            console.log('listening');
+            debug('listening');
             on_ready(port);
         });
         //server_objects.add_socket(server);
@@ -77,7 +84,7 @@
 
 
     test("init", function (t) {
-        console.log("start!");
+        debug("start!");
         var port = 8080;
         init_server(port, function(port) {
             init_client(port, function() {
